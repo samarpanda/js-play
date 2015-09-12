@@ -12,7 +12,7 @@
     "experiments"
   ],
   "author": "Samar Panda <samar.panda84@gmail.com> (http://samarpanda.com)",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "ava": "^0.2.0"
   }
