@@ -1,0 +1,19 @@
+{
+  "name": "js-play",
+  "version": "0.0.1",
+  "description": "My js playground",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "my",
+    "js",
+    "experiments"
+  ],
+  "author": "Samar Panda <samar.panda84@gmail.com> (http://samarpanda.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^0.2.0"
+  }
+}
