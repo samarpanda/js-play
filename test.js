@@ -1,21 +1,12 @@
-var test = require('ava');
+var fs = require('fs');
 
-test('foo', function(t){
-	t.pass();
-	t.end();
-});
+fs.readdir('test', function(err, files){
+	if(err){
+		return false;
+	}
 
-test('Sample test', (t) => {
-	t.same([1,2], [1,2]);
-	t.end();
-});
+	files.forEach(function(file){
+		require('./test/'+file);
+	});
 
-test('Planned assertions', (t) => {
-	t.plan(1);
-
-	t.pass();
-
-	setTimeout(function(){
-		t.pass();
-	}, 100);
 });
