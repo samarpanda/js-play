@@ -1,8 +1,17 @@
+var l = console.log;
+
+var toArray = function(args){
+	return [].slice.call(args);
+}
+
 /**
- * Auto curry
+ * Sub curry
  */
 var type0 = function(fn){
-
+	var args = Array.prototype.slice.call(arguments, 1);
+	return function(){
+		return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)))
+	}
 };
 
 /**
@@ -22,14 +31,24 @@ var type1 = function(fn){
 	};
 };
 
-var type2 = function(fn, args, context){
-	
+/**
+ * Auto Curry
+ */
+var type2 = function(fn, numArgs){
+	var numArgs = numArgs || fn.length;
 	function f(){
-		// return 5;
+		if(arguments.length < numArgs){
+			return numArgs - arguments.length > 0 ?
+				type2(type0.apply(this, [fn].concat(toArray(arguments))), numArgs - arguments.length) :
+				type0.apply(this, [fn].concat(Array.prototype.slice.apply(arguments)));
+		}else{
+			return fn.apply(this, arguments);
+		}
 	}
-
+	f.toString = function(){};
+	f.curried = true;
 	return f;
-}
+};
 
 exports.type0 = type0;
 exports.type1 = type1;

@@ -1,11 +1,12 @@
+
 var l = console.log;
 
 var sum2 = function(a,b){
 	return a + b;
 }
 
-var sum3 = function(a, b, c){
-
+function sum3(a, b, c){
+	return a + b + c;
 };
 
 var substract2 = function(a, b){
