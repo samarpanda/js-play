@@ -2,9 +2,9 @@ var test = require('ava');
 var p = require('path').resolve;
 var l = console.log;
 
-var curry = require(p('src/curry'));
+var curry = require(p('server/src/curry'));
 
-var util = require(p('src/util'));
+var util = require(p('server/src/util'));
 var sum2 = util.sum2;
 var sum3 = util.sum3;
 

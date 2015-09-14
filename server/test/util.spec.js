@@ -1,6 +1,6 @@
 var test = require('ava');
-var r = require('path').resolve;
-var util = require(r('src/util'));
+var p = require('path').resolve;
+var util = require(p('server/src/util'));
 
 test('Test sum2', function(t){
 	t.ok(util.sum2(1,2), 3);
