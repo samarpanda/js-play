@@ -45,6 +45,4 @@ LList.prototype.display = function(){
 	}
 };
 
-
-
 exports.LinkedList = LList;
