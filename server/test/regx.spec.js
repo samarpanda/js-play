@@ -85,6 +85,10 @@ test('Is Integer', function(t){
 	t.end();
 });
 
+/**
+ * Word boundry \b
+ * Check if string contains word foo
+ */
 test('Contains word foo', function(t){
 	var tReg = keepT(regx.word);
 	t.true(tReg(['sp foo', 'foo sp', 'dsp foo sp'], 2));
@@ -93,12 +97,26 @@ test('Contains word foo', function(t){
 });
 
 /**
- * Password having one 
+ * Lookahed operator ?=
+ * Password having at least
+ * one digit, one character, one symbol or underscore(\W_)
+ * and minimum length 6
  */
 test('Password validation', function(t){
 	var tReg = keepT(regx.p_ahead);
 	t.true(tReg(['sam1r#', '1asfg#', '1asdfsaf%', '1234asf_'], true))
 	t.false(tReg(['samarp', '123456', '#$%^#@'], false));
+	t.end();
+});
+
+/**
+ * Negative lookahed ?!
+ * Occurence of 'a' When it doesn't preceeds 'b'
+ */
+test('Negative lookahead', function(t){
+	var tReg = keepT(regx.n_ahead);
+	t.true(tReg(['ac', 'yasdf'], 2));
+	t.false(tReg(['bab', 'abcd'], 3));
 	t.end();
 });
 

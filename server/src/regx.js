@@ -14,10 +14,13 @@ var regx = function(){
 		// look ahead password
 		'p_ahead': /^(?=.*\d)(?=.*[a-z])(?=.*[\W_]).{6,}$/i,
 		// negative look ahead
-		'nahead': / /
+		'n_ahead': /a(?!b)/g
 	};
 }();
 
+/**
+ * Unicode aware regular expression
+ */
 var uregx = function(){
 
 }();
