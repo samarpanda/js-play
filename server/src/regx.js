@@ -8,9 +8,13 @@ var regx = function(){
 		// #123abc, #fab
 		'hdec': /^#(?:[a-f\d]{3}){1,2}$/,
 		// .5, +1.5, -1., 25
-		'num': /^[+-]?(?:\d*\.?\d+|\d+\.)/g,
-		// sp foo dsp
-		'word': /\bfoo\b/
+		'num': /^[+-]?(?:\d*\.?\d+|\d+\.)/,
+		// word boundry contains foo
+		'word': /\bfoo\b/,
+		// look ahead password
+		'p_ahead': /^(?=.*\d)(?=.*[a-z])(?=.*[\W_]).{6,}$/i,
+		// negative look ahead
+		'nahead': / /
 	};
 }();
 

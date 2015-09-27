@@ -13,6 +13,13 @@ var regPassAllContains = function(reg, arr){
 	});
 };
 
+var regFailAllContains = function(reg, arr){
+	return arr.some(function(el){
+		// l(el.search(reg), el);
+		return el.search(reg) > -1;
+	});
+};
+
 var regPassAll = function(reg, arr){
 	return arr.every(function(el){
 		// l(el.search(reg), el);
@@ -42,6 +49,9 @@ var keepT = function(regx){
 			break;
 			case 2://Contains
 				fn = regPassAllContains;
+			break;
+			case 3:
+				fn = regFailAllContains;
 			break;
 			default:
 				fn = regPassAll;
@@ -75,8 +85,21 @@ test('Is Integer', function(t){
 	t.end();
 });
 
-test('Contains word', function(t){
+test('Contains word foo', function(t){
 	var tReg = keepT(regx.word);
 	t.true(tReg(['sp foo', 'foo sp', 'dsp foo sp'], 2));
+	t.false(tReg(['sp dsp', 'foosp dsp', 'dspfoo sp'], 3));
 	t.end();
 });
+
+/**
+ * Password having one 
+ */
+test('Password validation', function(t){
+	var tReg = keepT(regx.p_ahead);
+	t.true(tReg(['sam1r#', '1asfg#', '1asdfsaf%', '1234asf_'], true))
+	t.false(tReg(['samarp', '123456', '#$%^#@'], false));
+	t.end();
+});
+
+
