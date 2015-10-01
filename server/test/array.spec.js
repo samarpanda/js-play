@@ -462,3 +462,38 @@ test('Convert array to Trees', function(t){
 	t.end();
 });
 
+test('linkedin test', function(t){
+	var ends = [
+		{ "skill": "css", "user": "Tom"},
+		{ "skill": "css", "user": "Jaisen"},
+		{ "skill": "Javascript", "user": "Amit"},
+		{ "skill": "HTML", "user": "Sean"},
+		{ "skill": "Javascript", "user": "Bala"},
+		{ "skill": "css", "user": "Pradeep"}
+	];
+	var output = [
+		{ skill: 'css', users: [ 'Tom', 'Jaisen', 'Pradeep' ] },
+  	{ skill: 'Javascript', users: [ 'Amit', 'Bala' ] },
+  	{ skill: 'HTML', users: [ 'Sean' ] }
+  ];
+	Array.prototype.myReduce = arrUtil.myReduce;
+
+	var obj = {};
+	var result = ends.filter(function(el, idx, arr){
+		var bool = false;
+		if(!obj.hasOwnProperty(el.skill)){
+			obj[el.skill] = idx;
+			el['users'] = [];
+			bool = true;
+		}
+		arr[obj[el.skill]].users.push(el.user);
+		if(bool)
+			delete arr[obj[el.skill]].user;
+		return bool;
+	});
+
+	t.same(result, output);
+	t.end();
+});
+
+
