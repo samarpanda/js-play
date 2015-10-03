@@ -50,6 +50,32 @@ var type2 = function(fn, numArgs){
 	return f;
 };
 
+/**
+ * Proxy curry
+ */
+var type3 = function(fn){
+	return new Proxy(fn, _curryHandler([]));
+};
+var _curryHandler = function(){
+	return {
+		apply: function(target, thisArg, argList){
+			var totalArgs = boundArgs.concat(argList);
+			return totalArgs.length >= target.length ? target.apply(thisArg, totalArgs) : new Proxy(target, _curryHandler(totalArgs));
+		},
+		get: function(target, prop, recv){
+			switch(prop){
+				case: 'length':
+					return target.length - boundArgs.length;
+				case: 'name':
+					return target.name;
+				default:
+					return target[prop];
+			}
+		}
+	};
+};
+
 exports.type0 = type0;
 exports.type1 = type1;
 exports.type2 = type2;
+exports.type3 = type3;
