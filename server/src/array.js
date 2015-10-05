@@ -55,7 +55,7 @@ var myReduce = function(combiner, initValue){
 		accumulatedValue = combiner(accumulatedValue, this[counter]);
 		counter++;
 	};
-	return accumulatedValue;
+	return [accumulatedValue];
 };
 
 var zip = function(left, right, combine){

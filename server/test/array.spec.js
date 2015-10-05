@@ -219,8 +219,8 @@ test('Implemented Array.reduce', function(t){
 	var result2 = [1,2,3,4].myReduce(function(p, el){
 		return p + el;
 	});
-	t.is(result, 10);
-	t.is(result2, 10);
+	t.same(result, [10]);
+	t.same(result2, [10]);
 	t.end();
 });
 
@@ -246,12 +246,12 @@ test('Reduce to a different format', function(t){
 		}
 	];
 
-	var output = {
+	var output = [{
 		'675465': 'Fracture',
 	  '65432445': 'The Chamber',
 	  '70111470': 'Die Hard',
 	  '654356453': 'Bad Boys'
-	};
+	}];
 	Array.prototype.myReduce = arrUtil.myReduce;
 	var result = videos.myReduce(function(p, el){
 		p[el.id] = el.title;
