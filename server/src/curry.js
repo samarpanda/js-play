@@ -52,6 +52,7 @@ var type2 = function(fn, numArgs){
 
 /**
  * Proxy curry
+ * https://gist.github.com/jdalton/2930a6231634b036a84b
  */
 var type3 = function(fn){
 	return new Proxy(fn, _curryHandler([]));
@@ -64,9 +65,9 @@ var _curryHandler = function(){
 		},
 		get: function(target, prop, recv){
 			switch(prop){
-				case: 'length':
+				case 'length':
 					return target.length - boundArgs.length;
-				case: 'name':
+				case 'name':
 					return target.name;
 				default:
 					return target[prop];
