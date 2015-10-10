@@ -30,8 +30,58 @@ Observable.prototype = {
 			);
 		});
 	},
-	//TODO: Add this feature
-	filter: function(){},
-	//TODO: Add this feature
-	take: function(){}
+	filter: function(testFunc){
+		var self = this;
+		return new Observable(function forEach(){
+			return self.forEach(
+				function onNext(x){
+					if(testFunc(x)){
+						observer.onNext(x);
+					}
+				},
+				function onError(e){
+					observer.onError(e);
+				},
+				function onCompleted(){
+					observer.onCompleted();
+				}
+			);
+		});
+	},
+	take: function(num){
+		var self = this;
+		return new Observable(function forEach(){
+			var counter = 0,
+			subscription = self.forEach(
+				function onNext(v){
+					observer.onNext(v);
+					counter++;
+					if(counter === num){
+						observer.onCompleted();
+						subscription.dispose();
+					}
+				},
+				function onError(e){
+					observer.onError(e);
+				},
+				function onCompleted(){
+					observer.onCompleted();
+				}
+			);
+			return subscription;
+		});
+	}
+};
+
+Observable.fromEvent = function(dom, eventName){
+	return new Observable(function forEach(observer){
+		var handler = e => observer.onNext(e);
+
+		dom.addEventListener(eventName, handler);
+		return {
+			dispose: () => {
+				dom.removeEventListener(eventName, handler);
+			}
+		};
+	});
 };
