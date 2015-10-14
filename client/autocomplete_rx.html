@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>Auto complete using rx</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,11 +15,13 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <p>JS Playground</p>
-        <ul>
-            <li><a href="util.html">Util modules</a></li>
-            <li><a href="clipboard.html">Flash free clipboard for web</a></li>
-            <li><a href="autocomplete_rx.html">Autocomplete using observables</a></li>
-        </ul>
+
+        <p><a href="index.html">JS Playground</a> - Auto complete using Observables</p>
+
+        <input id="search" name="search" type="text" />
+
+        <script src="libs/jquery.min.js"></script>
+        <script src="libs/rx.all.min.js"></script>
+        <script src="src/autocomplete_rx.js"></script>
     </body>
 </html>
