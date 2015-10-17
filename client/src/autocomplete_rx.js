@@ -4,6 +4,7 @@ var Observable = Rx.Observable;
 
 var searchInput = document.getElementById('search');
 var keypresses = Observable.fromEvent(searchInput, 'keypress');
+var displayResult = document.getElementById('result');
 
 var getWikiSearchResults = function(query){
 	var canelled = false;
@@ -36,7 +37,7 @@ var searchResultSets =
 
 searchResultSets.forEach(
 	function(resultSet){
-		console.log(JSON.stringify(resultSet, null, 4));
+		displayResult.value = JSON.stringify(resultSet, null, 4);
 	},
 	function(error){
 		console.error(error);
