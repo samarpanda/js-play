@@ -4,7 +4,7 @@ var p = require('path').resolve;
 var l = console.log;
 
 var DetermineStudentPassingStatus = require(p('client/src/service_objects'));
-var Grade = require(p('client/src/grade'));
+var Grade = require(p('client/src/sample_grade'));
 
 test('#fromAssignments passing', function(t){
 	var student = {};
